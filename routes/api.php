@@ -8,19 +8,7 @@ use App\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Http;
 use App\Message;
-
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
 
 Route::post('/register', function (Request $request) {
     $request->validate([
@@ -39,7 +27,6 @@ Route::post('/register', function (Request $request) {
 });
 
 Route::post('/login', function (Request $request) {
-
 
     $request->validate([
         'email' => ['required'],
@@ -98,7 +85,6 @@ Route::middleware('auth:sanctum')->post('/payment', function (Request $request) 
 
     $stripe = new \Stripe\StripeClient($stripeKey);
     try {
-        //code...
         $charge = $stripe->charges->create([
             'amount' => $amount,
             'currency' => 'usd',
